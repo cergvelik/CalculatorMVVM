@@ -1,0 +1,23 @@
+﻿<Application x:Class="Calculator.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Calculator"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Templates/ButtonTemplate.xaml" />
+                <ResourceDictionary Source="Templates/TextBoxTemplate.xaml" />
+                <ResourceDictionary Source="Templates/MenuButtonTemplate.xaml"/>
+                <ResourceDictionary Source="Styles/NumberButtonStyle.xaml"/>
+                <ResourceDictionary Source="Styles/SymbolButtonStyle.xaml"/>
+                <ResourceDictionary Source="Styles/TopSymbButtonStyle.xaml"/>
+                <ResourceDictionary Source="Styles/CalculatorButtonStyle.xaml"/>
+                <ResourceDictionary Source="SVG/IconCalculator.xaml"/>
+                <ResourceDictionary Source="SVG/IconEnjCalculator.xaml"/>
+                <ResourceDictionary Source="SVG/IconProgCalculator.xaml"/>
+                <ResourceDictionary Source="Classes/View/View.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

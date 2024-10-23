@@ -1,0 +1,153 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Calculator"
+                    xmlns:localModel="clr-namespace:Calculator.Classes.Model"
+                    xmlns:localViewModel="clr-namespace:Calculator.Classes.ViewModel">
+
+    <!-- 
+    The View can be defined in a UserControl, a DataTemplate, or a combination of the two. 
+    It can exist as it's own file, or it can be simply added to Window.Resources.
+    
+    My View is a ResourceDictionary that defines DataTemplates. This ResourceDictionary 
+    needs to be added to the application's ResourceDictionaries at runtime, so it is getting 
+    added it in the MainWindow's Window.Resources XAML.
+    -->
+    <!-- DataTemplate for Product ViewModel -->
+    <DataTemplate DataType="{x:Type localViewModel:CalculatorViewModel}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Background="#18181a"/>
+            <Grid OpacityMask="#18181a"/>
+            <!-- Calculator types dropdown -->
+            <ToggleButton Style="{DynamicResource ToggleButtonStyle2}" x:Name="calculatorTypeButton" Grid.Column="0" Grid.Row="0" 
+       Content="≡"  
+       Width="60"
+       Background="#18181a"
+       Foreground="White"
+       FontSize="56"
+       FontWeight="Regular"
+       FontFamily="Times New Roman"
+       BorderBrush="#18181a"
+       VerticalAlignment="Stretch"
+       HorizontalAlignment="Left"/>
+            <Popup x:Name="calculatorTypePopup" IsOpen="{Binding IsChecked, ElementName=calculatorTypeButton}" 
+PlacementTarget="{Binding ElementName=calculatorTypeButton}" 
+Placement="Bottom" Width="180" Height="Auto">
+                <Border Background="#29292b" BorderBrush="#29292b" BorderThickness="1">
+                    <StackPanel>
+                        <Button  Style="{StaticResource CalculatorButton}" >
+                            <StackPanel Orientation="Horizontal">
+                                <ContentControl Width="42" Height="42" Margin="4" Content="{StaticResource IconCalculator}"/>
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">Обычный</TextBlock>
+                            </StackPanel>
+                        </Button>
+                        <Button Style="{StaticResource CalculatorButton}">
+                            <StackPanel Orientation="Horizontal">
+                                <ContentControl Width="42" Height="42" Margin="4" Content="{StaticResource IconEnjCalculator}"/>
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">Инженерный</TextBlock>
+                            </StackPanel>
+                        </Button>
+                        <Button Style="{StaticResource CalculatorButton}">
+                            <StackPanel Orientation="Horizontal">
+                                <ContentControl Width="42" Height="42" Margin="4" Content="{StaticResource IconProgCalculator}"/>
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">Программист</TextBlock>
+                            </StackPanel>
+                        </Button>
+
+                    </StackPanel>
+                </Border>
+            </Popup>
+            <TextBox Style="{DynamicResource TextBoxStyle}" x:Name="Display"
+  Text="{Binding Display, Mode=OneWay}"
+  Grid.Row="0"
+  Grid.Column="0"
+  Height="88"
+  Margin="60,0,0,0"
+  FontSize="28"
+  HorizontalAlignment="Stretch"
+  FontFamily="Calibri"
+  VerticalAlignment="Center"
+  Background="#18181a"
+  BorderBrush="Transparent"
+  Foreground="White"
+  TextAlignment="Right"/>
+            <TextBlock Text="{Binding Result}" FontSize="24" HorizontalAlignment="Right" 
+                VerticalAlignment="Top" Margin="10,50,10,0" Foreground="White"/>
+            <!-- Кнопки калькулятора -->
+            <UniformGrid Grid.Row="2"
+      Grid.Column="0"
+      Rows="6"
+      Columns="4"
+      Margin="6,0,6,6"
+      Background="#18181a"
+      >
+
+                <Button Content="%" Style="{StaticResource SymbolButton}"
+     FontFamily="Calibri"/>
+                <Button Content="CE" Style="{StaticResource SymbolButton}"
+     FontFamily="Calibri"/>
+                <Button Content="C" Style="{StaticResource SymbolButton}" Command="{Binding ClearCommand}" CommandParameter="C"
+         FontFamily="Calibri"/>
+                <Button Content="🡠" Style="{StaticResource SymbolButton}"/>
+
+                <Button Content="1/x" Style="{StaticResource SymbolButton}"
+     FontFamily="Calibri" Command="{Binding SingleOperationCommand}" CommandParameter="1/x"/>
+                <Button Content="x²" Style="{StaticResource SymbolButton}"
+     FontFamily="Times New Roman" Command="{Binding SingleOperationCommand}" CommandParameter="^2"/>
+                <Button Content="√x" Style="{StaticResource SymbolButton}"
+     FontFamily="Times New Roman" Command="{Binding SingleOperationCommand}" CommandParameter="sqrt"/>
+
+                <Button Content="÷" Style="{StaticResource SymbolButton}" Command="{Binding OperationCommand}" CommandParameter="÷"  />
+
+                <Button Content="7" Style="{StaticResource NumberButton}" Command="{Binding NumberCommand}" CommandParameter="7" />
+                <Button Content="8" Style="{StaticResource NumberButton}" Command="{Binding NumberCommand}" CommandParameter="8"/>
+                <Button Content="9" Style="{StaticResource NumberButton}" Command="{Binding NumberCommand}" CommandParameter="9"/>
+                <Button Content="×" Style="{StaticResource SymbolButton}" Command="{Binding OperationCommand}" CommandParameter="×"/>
+
+                <Button Content="4" Style="{StaticResource NumberButton}" Command="{Binding NumberCommand}" CommandParameter="4" />
+                <Button Content="5" Style="{StaticResource NumberButton}" Command="{Binding NumberCommand}" CommandParameter="5" />
+                <Button Content="6" Style="{StaticResource NumberButton}" Command="{Binding NumberCommand}" CommandParameter="6" />
+                <Button Content="-" Style="{StaticResource SymbolButton}" Command="{Binding OperationCommand}" CommandParameter="-" />
+
+                <Button Content="1" Style="{StaticResource NumberButton}" Command="{Binding NumberCommand}" CommandParameter="1" />
+                <Button Content="2" Style="{StaticResource NumberButton}" Command="{Binding NumberCommand}" CommandParameter="2" />
+                <Button Content="3" Style="{StaticResource NumberButton}" Command="{Binding NumberCommand}" CommandParameter="3" />
+                <Button Content="+" Style="{StaticResource SymbolButton}" Command="{Binding OperationCommand}" CommandParameter="+"/>
+
+                <Button Content="+/-" Style="{StaticResource SymbolButton}" Command="{Binding SingleOperationCommand}" CommandParameter="+/-"/>
+                <Button Content="0" Style="{StaticResource NumberButton}" Command="{Binding NumberCommand}" CommandParameter="0"/>
+                <Button Content="," Style="{StaticResource SymbolButton}" Command="{Binding NumberCommand}" CommandParameter=","/>
+                <Button Template="{DynamicResource ButtonTemplate1}" Content="=" Background="#a19797" Command="{Binding CalculateCommand}"
+     Style="{StaticResource NumberButton}"
+     Foreground="Black"/>
+            </UniformGrid>
+
+            <UniformGrid Grid.Row="1"
+      Grid.Column="0"
+      Rows="1"
+      Columns="5"
+      Margin="6,0,6,0"
+      Background="#18181a"
+      >
+                <Button Content="MC" Style="{StaticResource TopSymbButton}"
+     FontFamily="Calibri"/>
+                <Button Content="MR" Style="{StaticResource TopSymbButton}"
+     FontFamily="Calibri"/>
+                <Button Content="M+" Style="{StaticResource TopSymbButton}"
+     FontFamily="Calibri"/>
+                <Button Content="M-" Style="{StaticResource TopSymbButton}"/>
+                <Button Content="MS" Style="{StaticResource TopSymbButton}"
+     FontFamily="Calibri"/>
+            </UniformGrid>
+        </Grid>
+
+    </DataTemplate>
+</ResourceDictionary>

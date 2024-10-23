@@ -1,0 +1,19 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style x:Key="NumberButton">
+        <Setter Property="Button.FontFamily" Value="Calibri" />
+        <Setter Property="Button.Background" Value="#696969" />
+        <Setter Property="Button.Foreground" Value="White" />
+        <Setter Property="Button.Margin" Value="3" />
+        <Setter Property="Button.FontSize" Value="24"/>
+        <Setter Property="Button.BorderBrush" Value="#18181a"/>
+        <Setter Property="Button.Template" Value="{DynamicResource ButtonTemplate1}"/>
+        <Style.Resources>
+            <Style TargetType="Border">
+                <Setter Property="CornerRadius" Value="8" />
+            </Style>
+        </Style.Resources>
+
+    </Style>
+</ResourceDictionary>
